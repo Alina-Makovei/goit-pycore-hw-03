@@ -54,10 +54,10 @@ def get_numbers_ticket(min, max, quantity):
 import re
 
 def normalize_phone(phone_number):
-    # Удаляем все символы, кроме цифр и +
+    # Видалення зайвого
     phone = re.sub(r"[^\d+]", "", phone_number)
 
-    # Проверяем код
+    # Перевірка коду країни
     if phone.startswith("+380"):
         return phone
     elif phone.startswith("380"):
@@ -65,7 +65,7 @@ def normalize_phone(phone_number):
     else:
         return "+38" + phone
 
-# Примеры из технического задания
+# Обробка прикладів з завдання
 raw_numbers = [
     "067\\t123 4567",
     "(095) 234-5678\\n",
@@ -78,7 +78,6 @@ raw_numbers = [
     "38050 111 22 11   ",
 ]
 
-# Нормализуем все номера из списка
 sanitized_numbers = [normalize_phone(num) for num in raw_numbers]
 
 print("Нормалізовані номери телефонів для SMS-розсилки:", sanitized_numbers)
